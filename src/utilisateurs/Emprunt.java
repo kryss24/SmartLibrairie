@@ -1,6 +1,9 @@
 package utilisateurs;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.*;
+
+import documents.Document;
 
 public class Emprunt {
     private int idAdh;

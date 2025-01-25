@@ -1,5 +1,5 @@
 package documents;
-
+import java.util.Scanner;
 public class Article extends Document{//Vas heriter de tout les attributs de Document
     private String nomAuteur; //Pour le nom de l'auteur
     private String datePublication; //Pour la date publication
@@ -7,6 +7,21 @@ public class Article extends Document{//Vas heriter de tout les attributs de Doc
     //Constructeur
     public Article(String title, int[] localisation, int nbrExemplaires, String nomAuteur, String datePublication) {
         super(title, localisation, nbrExemplaires);
+        this.nomAuteur = nomAuteur;
+        this.datePublication = datePublication;
+    }
+    
+
+    public Article(String title, int[] localisation, int nbrExemplaires, String code, String nomAuteur,
+            String datePublication) {
+        super(title, localisation, nbrExemplaires, code);
+        this.nomAuteur = nomAuteur;
+        this.datePublication = datePublication;
+    }
+
+
+    public Article(Document doc, String nomAuteur, String datePublication) {
+        super(doc);
         this.nomAuteur = nomAuteur;
         this.datePublication = datePublication;
     }
@@ -40,5 +55,12 @@ public class Article extends Document{//Vas heriter de tout les attributs de Doc
         return super.toString() + ", nomAuteur=" + nomAuteur + ", datePublication=" + datePublication + "]";
     }
 
-    
+    public static Article insert(){
+        Document doc = Document.insert();
+        System.out.print("Entrer le nom de l'auteur");
+        String nom = (new Scanner(System.in)).nextLine();
+        System.out.print("Entrer la date de publication (yyyy-mm-dd): ");
+        String datePublication = (new Scanner(System.in)).nextLine();
+        return (new Article(doc, nom, datePublication));
+    }
 }

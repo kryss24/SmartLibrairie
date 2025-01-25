@@ -1,5 +1,8 @@
 package documents;
 
+// import com.mysql.cj.x.protobuf.MysqlxDatatypes.Scalar.String;
+import java.util.*;
+
 public class Document {
     private String title;
     private int[] localisation;
@@ -14,6 +17,20 @@ public class Document {
         this.localisation = localisation;
         this.code = "code" + nbrDocument;
         this.nbrExemplaires = nbrExemplaires;
+    }
+    public Document(){}
+    public Document(String title, int[] localisation, int nbrExemplaires, String code) {
+        nbrDocument++;
+        this.title = title;
+        this.localisation = localisation;
+        this.code = code;
+        this.nbrExemplaires = nbrExemplaires;
+    }
+    public Document(Document doc){
+        this.title = doc.title;
+        this.localisation = doc.localisation;
+        this.code = doc.code;
+        this.nbrExemplaires = doc.nbrExemplaires;
     }
 
     // Accesseur
@@ -63,5 +80,16 @@ public class Document {
         return "code='" + this.code + "', title='" + this.title + "', localisation=[salle:" + this.localisation[0] +",rayon:" + this.localisation[1] + "]"
                 + ", nbrExemplaires=" + nbrExemplaires + "]";
     }
+    public static Document insert(){
+        System.out.print("Entrer le titre: ");
+        String titre = (new Scanner(System.in)).nextLine();
+        int[] localisation = new int[2];
+        System.out.print("Entrer la salle: ");
+        localisation[0] = (new Scanner(System.in)).nextInt();
+        localisation[1] = (new Scanner(System.in)).nextInt();
+        System.out.print("Entrer le nombre d'exemplaire: ");
+        int nbre = (new Scanner(System.in)).nextInt();
 
+        return (new Document(titre, localisation, nbre));
+    }
 }
